@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"sync"
 
 	"github.com/Lukski175/GO-Exercise5/time"
 
@@ -12,33 +11,36 @@ import (
 )
 
 func main() {
-	var wg sync.WaitGroup
-	wg.Add(2)
-	var s1 time.TimeServiceClient
-	var s2 time.TimeServiceClient
-	go SetupServer(&wg, &s1)
-	go SetupServer(&wg, &s2)
-	wg.Wait()
+
+	s1, c1 := SetupServer()
+	s2, c2 := SetupServer()
+	defer c1.Close()
+	defer c2.Close()
+
+	//fmt.Printf("After setup: \nOne: %d \n Two:%e \n", s1, s2)
 
 	go SendTimeRequest(s1)
 	go SendTimeRequest(s2)
+
+	for {
+
+	}
 }
 
-func SetupServer(gr *sync.WaitGroup, s *time.TimeServiceClient) {
+func SetupServer() (time.TimeServiceClient, grpc.ClientConn) {
 	fmt.Println("Input port to connect to...")
 	var port string
 	fmt.Scan(&port)
 	var conn *grpc.ClientConn
-	conn, err := grpc.Dial(":"+port, grpc.WithInsecure())
+	conn, err := grpc.Dial("0.0.0.0:"+port, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Could not connect: %s", err)
 	}
-	defer conn.Close()
 
 	c := time.NewTimeServiceClient(conn)
-	s = &c
+	//fmt.Printf("Setup server service: %d \n", s)
 
-	gr.Done()
+	return c, *conn
 }
 
 func SendTimeRequest(c time.TimeServiceClient) {

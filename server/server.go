@@ -28,7 +28,7 @@ func main() {
 
 	// Create listener tcp on port 9080
 	fmt.Printf("Listening on port %s", port)
-	list, err := net.Listen("tcp", ":"+port)
+	list, err := net.Listen("tcp", "0.0.0.0:"+port)
 	if err != nil {
 		log.Fatalf("Failed to listen on port %s: %v", port, err)
 	}
