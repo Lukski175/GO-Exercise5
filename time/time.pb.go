@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	sync "sync"
 )
 
 const (
@@ -19,20 +20,120 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type TimeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *TimeRequest) Reset() {
+	*x = TimeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_time_time_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TimeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TimeRequest) ProtoMessage() {}
+
+func (x *TimeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_time_time_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TimeRequest.ProtoReflect.Descriptor instead.
+func (*TimeRequest) Descriptor() ([]byte, []int) {
+	return file_time_time_proto_rawDescGZIP(), []int{0}
+}
+
+type TimeReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *TimeReply) Reset() {
+	*x = TimeReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_time_time_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TimeReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TimeReply) ProtoMessage() {}
+
+func (x *TimeReply) ProtoReflect() protoreflect.Message {
+	mi := &file_time_time_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TimeReply.ProtoReflect.Descriptor instead.
+func (*TimeReply) Descriptor() ([]byte, []int) {
+	return file_time_time_proto_rawDescGZIP(), []int{1}
+}
+
 var File_time_time_proto protoreflect.FileDescriptor
 
 var file_time_time_proto_rawDesc = []byte{
 	0x0a, 0x0f, 0x74, 0x69, 0x6d, 0x65, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x12, 0x04, 0x74, 0x69, 0x6d, 0x65, 0x42, 0x30, 0x5a, 0x2e, 0x68, 0x74, 0x74, 0x70, 0x73,
-	0x3a, 0x2f, 0x2f, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x4c, 0x75,
-	0x6b, 0x73, 0x6b, 0x69, 0x31, 0x37, 0x35, 0x2f, 0x47, 0x4f, 0x2d, 0x45, 0x78, 0x65, 0x72, 0x63,
-	0x69, 0x73, 0x65, 0x35, 0x3b, 0x74, 0x69, 0x6d, 0x65,
+	0x6f, 0x12, 0x04, 0x74, 0x69, 0x6d, 0x65, 0x22, 0x0d, 0x0a, 0x0b, 0x54, 0x69, 0x6d, 0x65, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x0b, 0x0a, 0x09, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x65,
+	0x70, 0x6c, 0x79, 0x32, 0x3e, 0x0a, 0x0b, 0x54, 0x69, 0x6d, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x12, 0x2f, 0x0a, 0x07, 0x67, 0x65, 0x74, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x11, 0x2e,
+	0x74, 0x69, 0x6d, 0x65, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x0f, 0x2e, 0x74, 0x69, 0x6d, 0x65, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x65, 0x70, 0x6c,
+	0x79, 0x22, 0x00, 0x42, 0x30, 0x5a, 0x2e, 0x68, 0x74, 0x74, 0x70, 0x73, 0x3a, 0x2f, 0x2f, 0x67,
+	0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x4c, 0x75, 0x6b, 0x73, 0x6b, 0x69,
+	0x31, 0x37, 0x35, 0x2f, 0x47, 0x4f, 0x2d, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x35,
+	0x3b, 0x74, 0x69, 0x6d, 0x65,
 }
 
-var file_time_time_proto_goTypes = []interface{}{}
+var (
+	file_time_time_proto_rawDescOnce sync.Once
+	file_time_time_proto_rawDescData = file_time_time_proto_rawDesc
+)
+
+func file_time_time_proto_rawDescGZIP() []byte {
+	file_time_time_proto_rawDescOnce.Do(func() {
+		file_time_time_proto_rawDescData = protoimpl.X.CompressGZIP(file_time_time_proto_rawDescData)
+	})
+	return file_time_time_proto_rawDescData
+}
+
+var file_time_time_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_time_time_proto_goTypes = []interface{}{
+	(*TimeRequest)(nil), // 0: time.TimeRequest
+	(*TimeReply)(nil),   // 1: time.TimeReply
+}
 var file_time_time_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
+	0, // 0: time.TimeService.getTime:input_type -> time.TimeRequest
+	1, // 1: time.TimeService.getTime:output_type -> time.TimeReply
+	1, // [1:2] is the sub-list for method output_type
+	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -43,18 +144,45 @@ func file_time_time_proto_init() {
 	if File_time_time_proto != nil {
 		return
 	}
+	if !protoimpl.UnsafeEnabled {
+		file_time_time_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TimeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_time_time_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TimeReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_time_time_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   0,
+			NumMessages:   2,
 			NumExtensions: 0,
-			NumServices:   0,
+			NumServices:   1,
 		},
 		GoTypes:           file_time_time_proto_goTypes,
 		DependencyIndexes: file_time_time_proto_depIdxs,
+		MessageInfos:      file_time_time_proto_msgTypes,
 	}.Build()
 	File_time_time_proto = out.File
 	file_time_time_proto_rawDesc = nil

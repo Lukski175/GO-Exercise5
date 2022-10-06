@@ -1,2 +1,14 @@
 package time;
 option go_package = "https://github.com/Lukski175/GO-Exercise5;time";
+
+service TimeService {
+    rpc getTime(TimeRequest) returns (TimeReply) {}
+}
+
+message TimeRequest {
+
+}
+
+message TimeReply {
+    string reply = 1;
+}
