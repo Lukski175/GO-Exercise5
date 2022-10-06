@@ -1,0 +1,2 @@
+package time;
+option go_package = "https://github.com/Lukski175/GO-Exercise5;time";
