@@ -9,6 +9,6 @@ message TimeRequest {
 
 }
 
-message TimeReply {
+message GetTimeReply {
     string reply = 1;
 }
