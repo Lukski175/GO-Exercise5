@@ -1,3 +1,4 @@
+syntax = "proto3";
 package time;
 option go_package = "https://github.com/Lukski175/GO-Exercise5;time";
 
@@ -9,6 +10,6 @@ message TimeRequest {
 
 }
 
-message GetTimeReply {
+message TimeReply {
     string reply = 1;
 }

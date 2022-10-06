@@ -18,7 +18,7 @@ type Server struct {
 
 func (s *Server) GetTime(ctx context.Context, in *time.TimeRequest) (*time.TimeReply, error) {
 	fmt.Printf("Received GetTime request\n")
-	return &time.GetTimeReply{Reply: t.Now().String()}, nil
+	return &time.TimeReply{Reply: t.Now().String()}, nil
 }
 
 func main() {
